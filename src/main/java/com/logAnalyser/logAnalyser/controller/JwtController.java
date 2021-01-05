@@ -29,7 +29,7 @@ public class JwtController {
         System.out.println("Inside");
         return "Hello world!!";
     }*/
-    @CrossOrigin(origins = "http://localhost:7200")
+    @CrossOrigin(origins = "*")
     @RequestMapping(value="/authenticate",method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception{
         try {

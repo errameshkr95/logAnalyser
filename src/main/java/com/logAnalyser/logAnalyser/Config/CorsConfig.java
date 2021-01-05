@@ -14,7 +14,7 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedMethods("GET","PUT","POST","DELETE")
                         .allowedHeaders("*")
-                        .allowedOrigins("http://localhost:7200");
+                        .allowedOrigins("*");
             }
         };
     }

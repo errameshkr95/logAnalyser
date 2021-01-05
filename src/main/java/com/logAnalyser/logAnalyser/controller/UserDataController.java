@@ -13,7 +13,7 @@ public class UserDataController {
     UserDataService userDataService;
 
     //Rest End for registering user
-    @CrossOrigin(origins = "http://localhost:7200")
+    @CrossOrigin(origins = "*")
     @PostMapping("/registerUser")
     public ResponseEntity<String> addUser(@RequestBody UserDataRequest userDataRequest){
 

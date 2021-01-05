@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class HostDataController {
     @Autowired
     HostDataService hostDataService;
-    @CrossOrigin(origins = "http://localhost:7200")
+    @CrossOrigin(origins = "*")
     @PostMapping(value="/addHostData")
     public ResponseEntity<String> addHostData(@RequestBody HostDataRequest hostDataRequest){
         //System.out.println(hostDataRequest.getHostPath()+ hostDataRequest.getUserName() + hostDataRequest.getPassword()+ hostDataRequest.getTimeFrequency());
@@ -21,7 +21,7 @@ public class HostDataController {
     }
 
     //End API for getting a host_info
-    @CrossOrigin(origins = "http://localhost:7200")
+    @CrossOrigin(origins = "*")
     @GetMapping("/getHostDataByHostPath")
     public ResponseEntity<HostDataEntity> getHostData(@RequestParam String hostPath){
         return ResponseEntity.ok((hostDataService.getHostByHostPath(hostPath)));
