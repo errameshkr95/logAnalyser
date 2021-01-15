@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
 @CrossOrigin(origins = "*")
 @RequestMapping(value="/hostAPI")
 @Controller
@@ -23,7 +25,7 @@ public class HostDataController {
     }
 
     @PostMapping("/viewHostData")
-    public ResponseEntity<HostDataEntity> getHostData(@RequestParam Integer hostId){
+    public ResponseEntity<Optional<HostDataEntity>> getHostData(@RequestParam Integer hostId){
         return ResponseEntity.ok(hostDataService.getHostByHostID(hostId));
     }
 

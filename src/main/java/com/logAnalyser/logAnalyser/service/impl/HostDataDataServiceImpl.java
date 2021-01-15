@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HostDataDataServiceImpl implements HostDataService {
@@ -29,9 +30,9 @@ public class HostDataDataServiceImpl implements HostDataService {
     }
 
     @Override
-    public HostDataEntity getHostByHostID(Integer hostId) {
+    public Optional<HostDataEntity> getHostByHostID(Integer hostId) {
         //HostDataEntity hostDataEntity = new HostDataEntity();
-        return hostDataRepository.findHostByHostId(hostId);
+        return hostDataRepository.findById(hostId);
     }
 
     @Override

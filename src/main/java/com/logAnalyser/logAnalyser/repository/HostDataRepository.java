@@ -11,7 +11,5 @@ import java.util.List;
 public interface HostDataRepository extends JpaRepository<HostDataEntity,Integer> {
     //public HostDataEntity findHostByHostID(Integer hostId);
     public List<HostDataEntity> findAll();
-    void deleteByHostPath(String hostPath);
 
-    HostDataEntity findHostByHostId(Integer hostId);
 }
