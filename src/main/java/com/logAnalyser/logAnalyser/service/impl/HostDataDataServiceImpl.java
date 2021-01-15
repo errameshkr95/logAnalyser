@@ -7,7 +7,6 @@ import com.logAnalyser.logAnalyser.service.HostDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,24 +18,59 @@ public class HostDataDataServiceImpl implements HostDataService {
 
     @Override
     public String addHost(HostDataRequest hostDataRequest) {
-        HostDataEntity hostDataEntity = new HostDataEntity(hostDataRequest.getHostPath(),
-                                                            hostDataRequest.getUserName(),
-                                                            hostDataRequest.getPassword(),
-                                                            hostDataRequest.getTimeFrequency());
+        HostDataEntity hostDataEntity = new HostDataEntity();
+        hostDataEntity.setHostPath(hostDataRequest.getHostPath());
+        hostDataEntity.setUserName(hostDataRequest.getUserName());
+        hostDataEntity.setPassword(hostDataRequest.getPassword());
+        hostDataEntity.setTimeFrequency(hostDataRequest.getTimeFrequency());
+
         hostDataRepository.save(hostDataEntity);
-
-        //System.out.println(hostDataEntity.getHostId() + hostDataEntity.getHostPath()+ hostDataEntity.getUserName() + hostDataEntity.getPassword()+ hostDataEntity.getTimeFrequency());
-        //System.out.println(hostDataRequest.getHostPath()+ hostDataRequest.getUserName() + hostDataRequest.getPassword()+ hostDataRequest.getTimeFrequency());
-
         return "New Host Info added";
     }
 
     @Override
-    public HostDataEntity getHostByHostPath(String hostPath) {
+    public HostDataEntity getHostByHostID(Integer hostId) {
         //HostDataEntity hostDataEntity = new HostDataEntity();
-        return hostDataRepository.findHostByHostPath(hostPath);
+        return hostDataRepository.findHostByHostId(hostId);
     }
 
+    @Override
+    public String deleteHostRecord(Integer hostId) {
+        if(hostDataRepository.findById(hostId) != null  ){
+           // HostDataEntity hostDataEntity = new HostDataEntity()
+            hostDataRepository.deleteById(hostId);
+            return "Record has been deleted!!";
+        }
+        else{
+            return "Record Not Found!!";
+        }
+    }
+
+    @Override
+    public List<HostDataEntity> findAll() {
+        return hostDataRepository.findAll();
+    }
+
+    @Override
+    public String updateHost(HostDataRequest hostDataRequest, Integer hostId) {
+        hostDataRepository.findById(hostId).map(hostDataEntity -> {
+            hostDataEntity.setHostPath(hostDataRequest.getHostPath());
+            hostDataEntity.setUserName(hostDataRequest.getUserName());
+            hostDataEntity.setPassword(hostDataRequest.getPassword());
+            hostDataEntity.setTimeFrequency(hostDataRequest.getTimeFrequency());
+            return hostDataRepository.save(hostDataEntity);
+        }).orElseGet(() -> {
+            HostDataEntity hostDataEntity = new HostDataEntity();
+            hostDataEntity.setHostPath(hostDataRequest.getHostPath());
+            hostDataEntity.setUserName(hostDataRequest.getUserName());
+            hostDataEntity.setPassword(hostDataRequest.getPassword());
+            hostDataEntity.setTimeFrequency(hostDataRequest.getTimeFrequency());
+            return hostDataRepository.save(hostDataEntity);
+
+        });
+
+        return "HostData updated successfully!!";
+    }
 
 
 }

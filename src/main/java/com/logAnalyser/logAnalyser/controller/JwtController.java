@@ -24,11 +24,7 @@ public class JwtController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    /*@RequestMapping({"/hello"})
-    public String hello(){
-        System.out.println("Inside");
-        return "Hello world!!";
-    }*/
+
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/authenticate",method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception{

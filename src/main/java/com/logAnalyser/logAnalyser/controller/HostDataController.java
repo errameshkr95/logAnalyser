@@ -8,23 +8,38 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+@CrossOrigin(origins = "*")
+@RequestMapping(value="/hostAPI")
 @Controller
 public class HostDataController {
     @Autowired
     HostDataService hostDataService;
-    @CrossOrigin(origins = "*")
+
     @PostMapping(value="/addHostData")
     public ResponseEntity<String> addHostData(@RequestBody HostDataRequest hostDataRequest){
-        //System.out.println(hostDataRequest.getHostPath()+ hostDataRequest.getUserName() + hostDataRequest.getPassword()+ hostDataRequest.getTimeFrequency());
-        //return userService.addUser(userDao);
+
         return ResponseEntity.ok(hostDataService.addHost(hostDataRequest));
     }
 
-    //End API for getting a host_info
-    @CrossOrigin(origins = "*")
-    @GetMapping("/getHostDataByHostPath")
-    public ResponseEntity<HostDataEntity> getHostData(@RequestParam String hostPath){
-        return ResponseEntity.ok((hostDataService.getHostByHostPath(hostPath)));
+    @PostMapping("/viewHostData")
+    public ResponseEntity<HostDataEntity> getHostData(@RequestParam Integer hostId){
+        return ResponseEntity.ok(hostDataService.getHostByHostID(hostId));
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteHostData(@RequestParam Integer hostId){
+        return ResponseEntity.ok(hostDataService.deleteHostRecord(hostId));
+    }
+
+    @GetMapping("/getAllHostData")
+    public ResponseEntity<List<HostDataEntity>> getAllHostData(){
+        return ResponseEntity.ok(hostDataService.findAll());
+    }
+    @PutMapping("/update")
+    public ResponseEntity<String> updateHostData(@RequestBody HostDataRequest hostDataRequest,@RequestParam(name="hostId") Integer hostId){
+       return ResponseEntity.ok(hostDataService.updateHost(hostDataRequest,hostId));
+
     }
 
 

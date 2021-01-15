@@ -8,5 +8,11 @@ import java.util.List;
 public interface HostDataService {
 
     public String addHost(HostDataRequest hostDataRequest);
-    public HostDataEntity getHostByHostPath(String hostPath);
+
+    HostDataEntity getHostByHostID(Integer hostPath);
+
+    public String deleteHostRecord(Integer hostId);
+    List<HostDataEntity> findAll();
+
+    String updateHost(HostDataRequest hostDataRequest, Integer hostId);
 }

@@ -14,15 +14,9 @@ public class UserDataController {
 
     //Rest End for registering user
     @CrossOrigin(origins = "*")
-    @PostMapping("/registerUser")
+    @PostMapping("/signupUser")
     public ResponseEntity<String> addUser(@RequestBody UserDataRequest userDataRequest){
-
-        /*System.out.println(userDataRequest.getUserName());
-        System.out.println(userDataRequest.getPassword());
-        System.out.println(userDataRequest.getEmail());
-        System.out.println(userDataRequest.getMobileNo());*/
-
-        return ResponseEntity.ok(userDataService.registerUser(userDataRequest));
+              return ResponseEntity.ok(userDataService.registerUser(userDataRequest));
     }
 
 
