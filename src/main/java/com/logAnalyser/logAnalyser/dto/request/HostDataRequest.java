@@ -5,22 +5,32 @@ public class HostDataRequest {
     String userName;
     String password;
     Integer timeFrequency;
+    String description;
 
     //Constructor
     public HostDataRequest() {
     }
 
-    public HostDataRequest(Integer hostId, String hostPath, String userName, String password, Integer timeFrequency) {
-    }
 
-    public HostDataRequest(String hostPath, String userName, String password, Integer timeFrequency) {
+
+    public HostDataRequest(String hostPath, String userName, String password, Integer timeFrequency, String description) {
         this.hostPath = hostPath;
         this.userName = userName;
         this.password = password;
         this.timeFrequency = timeFrequency;
+        this.description = description;
     }
 
     //Getter and Setter Method
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getHostPath() {
         return hostPath;

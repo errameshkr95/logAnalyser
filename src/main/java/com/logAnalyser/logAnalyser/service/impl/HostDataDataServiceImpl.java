@@ -24,6 +24,7 @@ public class HostDataDataServiceImpl implements HostDataService {
         hostDataEntity.setUserName(hostDataRequest.getUserName());
         hostDataEntity.setPassword(hostDataRequest.getPassword());
         hostDataEntity.setTimeFrequency(hostDataRequest.getTimeFrequency());
+        hostDataEntity.setDescription(hostDataRequest.getDescription());
 
         hostDataRepository.save(hostDataEntity);
         return "New Host Info added";

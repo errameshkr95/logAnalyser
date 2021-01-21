@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
+//@CrossOrigin(origins = "http://localhost:7200")
 @Controller
 public class UserDataController {
     @Autowired
     UserDataService userDataService;
 
     //Rest End for registering user
-    @CrossOrigin(origins = "*")
-    @PostMapping("/signupUser")
+    //@CrossOrigin(origins = "*")
+    @PostMapping("/signup")
     public ResponseEntity<String> addUser(@RequestBody UserDataRequest userDataRequest){
               return ResponseEntity.ok(userDataService.registerUser(userDataRequest));
     }

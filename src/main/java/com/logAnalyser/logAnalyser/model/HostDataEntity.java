@@ -32,6 +32,9 @@ public class HostDataEntity {
     @Column(name="TIME_FREQUENCY", nullable = false)
     Integer timeFrequency; // variable for timeFrequency, required for controller agent
 
+    @Column(name = "description", nullable = false)
+    String description;
+
     //@Basic(optional = false)
     @CreationTimestamp
     //@Temporal(TemporalType.DATE)
@@ -54,17 +57,26 @@ public class HostDataEntity {
     public HostDataEntity() {
     }
 
-    public HostDataEntity(String hostPath, String userName, String password, Integer timeFrequency, LocalDateTime timestampCreation, LocalDateTime timestampUpdate) {
+    public HostDataEntity(String hostPath, String userName, String password, Integer timeFrequency, LocalDateTime timestampCreation, LocalDateTime timestampUpdate,String description) {
         this.hostPath = hostPath;
         this.userName = userName;
         this.password = password;
         this.timeFrequency = timeFrequency;
         this.timestampCreation = timestampCreation;
         this.timestampUpdate = timestampUpdate;
+        this.description = description;
     }
 
     //Getter and Setter Method
 
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getHostPath() {
         return hostPath;
